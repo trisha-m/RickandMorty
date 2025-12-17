@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">RickAndMortyCVS</string>
+    <!-- Search -->
+    <string name="title_search">Rick &amp; Morty Search</string>
+    <string name="label_search_characters">Search characters</string>
+    <string name="chip_alive">Alive</string>
+    <string name="chip_dead">Dead</string>
+    <string name="chip_unknown">Unknown</string>
+    <string name="text_no_characters_found">No characters found</string>
+
+    <!-- Details -->
+    <string name="title_character_details">Character Details</string>
+    <string name="cd_back">Back</string>
+    <string name="retry">Retry</string>
+
+    <!-- Details formatting -->
+    <string name="format_status_species">%1$s • %2$s</string>
+    <string name="format_origin">Origin: %1$s</string>
+    <string name="format_type">Type: %1$s</string>
+    <string name="format_created">Created: %1$s</string>
+</resources>

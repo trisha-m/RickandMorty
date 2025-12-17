@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Screen / layout paddings -->
+    <dimen name="padding_screen">12dp</dimen>
+    <dimen name="padding_details_screen">16dp</dimen>
+
+    <!-- Spacing -->
+    <dimen name="space_xs">6dp</dimen>
+    <dimen name="space_sm">8dp</dimen>
+    <dimen name="space_md">10dp</dimen>
+    <dimen name="space_lg">12dp</dimen>
+    <dimen name="space_xl">18dp</dimen>
+
+    <!-- Grid -->
+    <dimen name="grid_top_padding">12dp</dimen>
+    <dimen name="grid_item_spacing">10dp</dimen>
+    <dimen name="grid_bottom_padding">16dp</dimen>
+    <dimen name="grid_cell_min_size">140dp</dimen>
+
+    <!-- Card -->
+    <dimen name="card_corner_radius">16dp</dimen>
+    <dimen name="card_content_padding">12dp</dimen>
+    <dimen name="card_text_padding">10dp</dimen>
+
+    <!-- Grid min cell sizes for accessibility / landscape -->
+    <dimen name="grid_cell_min_portrait">140dp</dimen>
+    <dimen name="grid_cell_min_portrait_large_font">180dp</dimen>
+
+    <dimen name="grid_cell_min_landscape">180dp</dimen>
+    <dimen name="grid_cell_min_landscape_large_font">220dp</dimen>
+    <dimen name="grid_cell_min_landscape_very_large_font">260dp</dimen>
+
+    <!-- Grid spacing (a bit more breathable for big fonts) -->
+    <dimen name="grid_spacing_normal">10dp</dimen>
+    <dimen name="grid_spacing_large_font">12dp</dimen>
+
+</resources>
