@@ -36,6 +36,8 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
 import coil.compose.AsyncImage
 import com.trishala.cvs.R
@@ -57,13 +59,12 @@ fun SearchScreen(
 
     val paddingScreen = dimensionResource(id = R.dimen.padding_screen)
     val spaceMd = dimensionResource(id = R.dimen.space_md)
-    val spaceXl = dimensionResource(id = R.dimen.space_xl)
     val spaceLg = dimensionResource(id = R.dimen.space_lg)
+    val spaceXl = dimensionResource(id = R.dimen.space_xl)
     val spaceSm = dimensionResource(id = R.dimen.space_sm)
 
     val gridTop = dimensionResource(id = R.dimen.grid_top_padding)
     val gridBottom = dimensionResource(id = R.dimen.grid_bottom_padding)
-
 
     val isLandscape =
         LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE
@@ -72,24 +73,24 @@ fun SearchScreen(
     val minCellSize = when {
         isLandscape && fontScale >= 1.4f ->
             dimensionResource(id = R.dimen.grid_cell_min_landscape_very_large_font)
-
         isLandscape && fontScale >= 1.2f ->
             dimensionResource(id = R.dimen.grid_cell_min_landscape_large_font)
-
         isLandscape ->
             dimensionResource(id = R.dimen.grid_cell_min_landscape)
-
         fontScale >= 1.2f ->
             dimensionResource(id = R.dimen.grid_cell_min_portrait_large_font)
-
         else ->
             dimensionResource(id = R.dimen.grid_cell_min_portrait)
     }
 
-    val gridSpacing = if (fontScale >= 1.2f)
-        dimensionResource(id = R.dimen.grid_spacing_large_font)
-    else
-        dimensionResource(id = R.dimen.grid_spacing_normal)
+    val gridSpacing =
+        if (fontScale >= 1.2f)
+            dimensionResource(id = R.dimen.grid_spacing_large_font)
+        else
+            dimensionResource(id = R.dimen.grid_spacing_normal)
+
+    val searchFieldCd = stringResource(id = R.string.cd_search_characters)
+    val loadingCd = stringResource(id = R.string.cd_loading_characters)
 
     Scaffold(
         topBar = {
@@ -111,11 +112,14 @@ fun SearchScreen(
             OutlinedTextField(
                 value = state.query,
                 onValueChange = { onIntent(SearchIntent.QueryChanged(it)) },
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .semantics {
+                        contentDescription = searchFieldCd
+                    },
                 singleLine = true,
                 label = { Text(stringResource(id = R.string.label_search_characters)) }
             )
-
 
             Row(
                 modifier = Modifier
@@ -168,7 +172,11 @@ fun SearchScreen(
                         .padding(top = spaceXl),
                     horizontalArrangement = Arrangement.Center
                 ) {
-                    CircularProgressIndicator()
+                    CircularProgressIndicator(
+                        modifier = Modifier.semantics {
+                            contentDescription = loadingCd
+                        }
+                    )
                 }
             }
 
@@ -217,17 +225,25 @@ private fun CharacterGridItem(
     val corner = dimensionResource(id = R.dimen.card_corner_radius)
     val textPad = dimensionResource(id = R.dimen.card_text_padding)
 
+    val characterCd = stringResource(
+        id = R.string.cd_character_item,
+        name
+    )
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { onClick() },
+            .clickable { onClick() }
+            .semantics(mergeDescendants = true) {
+                contentDescription = characterCd
+            },
         shape = RoundedCornerShape(corner),
         colors = CardDefaults.cardColors(containerColor = Color.White)
     ) {
         Column {
             AsyncImage(
                 model = imageUrl,
-                contentDescription = name,
+                contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth()
                     .aspectRatio(1f)

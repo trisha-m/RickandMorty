@@ -18,4 +18,11 @@
     <string name="format_origin">Origin: %1$s</string>
     <string name="format_type">Type: %1$s</string>
     <string name="format_created">Created: %1$s</string>
+
+    <!-- Accessibility / TalkBack -->
+    <string name="cd_search_characters">Search characters by name</string>
+    <string name="cd_loading_characters">Loading characters</string>
+    <string name="cd_character_item">%1$s, character</string>
+
+
 </resources>

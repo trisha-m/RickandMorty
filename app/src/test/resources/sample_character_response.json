@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "name": "Rick Sanchez",
+    "imageUrl": "img",
+    "species": "Human",
+    "status": "Alive",
+    "origin": "Earth",
+    "type": null,
+    "createdAt": "date"
+  }
+]
